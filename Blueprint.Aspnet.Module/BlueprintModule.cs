@@ -5,12 +5,12 @@ using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Web;
-using Blueprint.Aspnet.Host.Extensions;
+using Blueprint.Aspnet.Module.Extensions;
 using DeepEqual.Syntax;
 using Newtonsoft.Json;
 using snowcrashCLR;
 
-namespace Blueprint.Aspnet.Host.Modules
+namespace Blueprint.Aspnet.Module
 {
     public class BlueprintModule: IHttpModule 
     {

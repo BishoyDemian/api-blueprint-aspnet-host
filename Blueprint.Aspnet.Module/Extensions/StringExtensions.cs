@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Blueprint.Aspnet.Host.Extensions
+namespace Blueprint.Aspnet.Module.Extensions
 {
     public static class StringExtensions
     {
