@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Web;
 
-namespace Blueprint.Aspnet.Host.Extensions
+namespace Blueprint.Aspnet.Module.Extensions
 {
     public static class HttpRequestExtensions
     {

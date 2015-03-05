@@ -1,7 +1,7 @@
 ﻿using System.Collections.Specialized;
 using snowcrashCLR;
 
-namespace Blueprint.Aspnet.Host.Extensions
+namespace Blueprint.Aspnet.Module.Extensions
 {
     public static class BlueprintExtensions
     {

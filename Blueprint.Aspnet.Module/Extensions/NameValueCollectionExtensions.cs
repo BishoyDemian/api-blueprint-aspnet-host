@@ -2,7 +2,7 @@
 using System.Collections.Specialized;
 using System.Linq;
 
-namespace Blueprint.Aspnet.Host.Extensions
+namespace Blueprint.Aspnet.Module.Extensions
 {
     public static class NameValueCollectionExtensions
     {

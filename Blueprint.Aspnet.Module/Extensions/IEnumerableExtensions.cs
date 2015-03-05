@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Blueprint.Aspnet.Host.Extensions
+namespace Blueprint.Aspnet.Module.Extensions
 {
     public static class IEnumerableExtensions
     {
