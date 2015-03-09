@@ -28,7 +28,7 @@ Host your API Blueprints in an ASP.net website.
 + will only capture and use the first (ordinal based) valid *matching* request/response (action) pair from the blueprint.
 
 ## Known issues
-+ SnowCrash.NET is a CLR+Native C++ DLL cimpiled in 32bit architecture, thus you will need a few tricks to get it to work properly.
++ SnowCrash.NET is a CLR/Native C++ DLL compiled in 32bit architecture. You will need some tweak to get it to work.
     1. Install Visual C++ Runtime 2012, you can find it in [this MSDN URL](http://www.microsoft.com/en-au/download/details.aspx?id=30679)
     2. Make sure you enable 32bit applications in your IIS APP Pool.
-    3. Grant filesystem access (read + execute) to your App Pool identity to the physical folder of the website.
+    3. (Not sure if really needed) Grant filesystem access (read + execute) to your App Pool identity to the physical folder of the website.
