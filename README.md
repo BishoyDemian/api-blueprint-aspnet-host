@@ -2,7 +2,7 @@
 Host your API Blueprints in an ASP.net website.
 
 ## Published Artefacts
-+ [![Build status](https://ci.appveyor.com/api/projects/status/t28deeh2xisxqyju?svg=true)](https://ci.appveyor.com/project/BishoyDemian/api-blueprint-aspnet-host)
++ CI Build [![Build status](https://ci.appveyor.com/api/projects/status/t28deeh2xisxqyju?svg=true)](https://ci.appveyor.com/project/BishoyDemian/api-blueprint-aspnet-host)
 
 ## Features
 + Scans a terget folder (and all sub-folders) for blueprint markdown files (*.md)
