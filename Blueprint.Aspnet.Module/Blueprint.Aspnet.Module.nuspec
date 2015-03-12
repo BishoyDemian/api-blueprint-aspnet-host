@@ -1,0 +1,14 @@
+﻿
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>BlueprintHost.net</id>
+        <title>Blueprint Host Module for Asp.net</title>
+        <authors>Bishoy Demian</authors>
+        <licenseUrl>https://raw.githubusercontent.com/BishoyDemian/api-blueprint-aspnet-host/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/BishoyDemian/api-blueprint-aspnet-host</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>BlueprintHost.net is a HTTPModule that can intercept incoming requests that match your API Blueprints and reply with your documented responses. As a mock server it enables you to rapidly work on your UI/UX without worrying about the back-end part of the project (just-yet)</description>
+        <releaseNotes>This version is dependant on a 3rd-party open source library for parsing the blueprint format, called SnowCrash.net, that has some limitations and known issues. please see the project Readme more details.</releaseNotes>
+    </metadata>
+</package>
