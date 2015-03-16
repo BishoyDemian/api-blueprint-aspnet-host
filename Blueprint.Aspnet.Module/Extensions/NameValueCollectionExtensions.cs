@@ -24,5 +24,22 @@ namespace Blueprint.Aspnet.Module.Extensions
                         &&
                         string.Equals(source[sourceKey], target[sourceKey], StringComparison.OrdinalIgnoreCase));
         }
+
+        public static bool HasKey(this NameValueCollection collection, string key, StringComparison comparison = StringComparison.OrdinalIgnoreCase)
+        {
+            return collection.AllKeys.Any(sourceKey => string.Equals(sourceKey, key, comparison));
+        }
+
+
+        public static NameValueCollection Except(this NameValueCollection collection, string key)
+        {
+            if (collection == null)
+                throw new ArgumentNullException("collection");
+
+            var copy = new NameValueCollection(collection);
+            copy.Remove(key);
+            return copy;
+        }
+
     }
 }

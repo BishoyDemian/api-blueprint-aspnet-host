@@ -130,6 +130,9 @@ namespace Blueprint.Aspnet.Module
 
         private bool MatchPayload(HttpRequest actualRequest, Payload payload)
         {
+            if (!MatchContentType(actualRequest.Headers, payload.Headers()))
+                return false;
+
             if (!MatchHeaders(actualRequest.Headers, payload.Headers()))
                 return false;
 
@@ -139,9 +142,36 @@ namespace Blueprint.Aspnet.Module
             return true;
         }
 
+        private bool MatchContentType(NameValueCollection actualRequestHeaders, NameValueCollection payloadHeaders)
+        {
+            if (payloadHeaders.HasKey("content-type"))
+            {
+                var sourceContentType =
+                    (actualRequestHeaders.GetValues("content-type") ?? new string[] {})
+                    .FirstOrDefault();
+
+                var targetContentType =
+                    (payloadHeaders.GetValues("content-type") ?? new string[] { })
+                    .FirstOrDefault();
+
+                if (sourceContentType.Contains(';'))
+                    sourceContentType = sourceContentType.Substring(0, sourceContentType.IndexOf(';'));
+
+                return string.Equals(sourceContentType, targetContentType, StringComparison.OrdinalIgnoreCase);
+            }
+            // no specific content type required by the blueprint
+            return true;
+        }
+
         private bool MatchHeaders(NameValueCollection actualRequestHeaders, NameValueCollection payloadHeaders)
         {
-            return actualRequestHeaders.Contains(payloadHeaders);
+            var requestHeaders = actualRequestHeaders;
+            if (actualRequestHeaders.HasKey("content-type"))
+            {
+                requestHeaders = actualRequestHeaders.Except("content-type");
+            }
+            
+            return requestHeaders.Contains(payloadHeaders);
         }
 
         private bool MatchBody(HttpRequest request, Payload payload)
