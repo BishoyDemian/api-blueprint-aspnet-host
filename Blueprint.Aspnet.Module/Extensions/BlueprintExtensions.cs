@@ -3,7 +3,7 @@ using snowcrashCLR;
 
 namespace Blueprint.Aspnet.Module.Extensions
 {
-    public static class BlueprintExtensions
+    internal static class BlueprintExtensions
     {
         public static NameValueCollection Headers(this Payload payload)
         {
