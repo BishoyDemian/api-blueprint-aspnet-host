@@ -6,8 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using Blueprint.Aspnet.Module.Extensions;
-using DeepEqual.Syntax;
-using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using snowcrashCLR;
 
 namespace Blueprint.Aspnet.Module
@@ -166,10 +165,18 @@ namespace Blueprint.Aspnet.Module
 
         private bool MatchJson(string requestBody, string payloadBody)
         {
-            var requestObject = JsonConvert.DeserializeObject(requestBody);
-            var payloadObject = JsonConvert.DeserializeObject(payloadBody);
+            var requestJson = string.IsNullOrWhiteSpace(requestBody)
+                ? "{}"
+                : requestBody;
 
-            return requestObject.IsDeepEqual(payloadObject);
+            var blueprintJson = string.IsNullOrWhiteSpace(payloadBody)
+                ? "{}"
+                : payloadBody;
+
+            var requestObject = JToken.Parse(requestJson);
+            var blueprintObject = JToken.Parse(blueprintJson);
+
+            return JToken.DeepEquals(requestObject, blueprintObject);
         }
 
         private void Application_EndRequest(Object source, EventArgs e)
