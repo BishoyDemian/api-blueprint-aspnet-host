@@ -3,7 +3,7 @@ using System.Web;
 
 namespace Blueprint.Aspnet.Module.Extensions
 {
-    public static class HttpRequestExtensions
+    internal static class HttpRequestExtensions
     {
         public static string GetBodyString(this HttpRequest request)
         {

@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace Blueprint.Aspnet.Module.Extensions
 {
-    public static class StringExtensions
+    internal static class StringExtensions
     {
         public static bool EqualsIgnoreCase(this string a, string b)
         {

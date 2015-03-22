@@ -30,3 +30,10 @@ OK, let's add another action. This time to put new data to our resource (essenti
         All your base are belong to us. 
         
 + Response 204
+
+
++ Request (application/json)
+
+        {"text":"All your base are belong to us."} 
+        
++ Response 204

@@ -8,6 +8,7 @@ using System.Web;
 using Blueprint.Aspnet.Module.Extensions;
 using Newtonsoft.Json.Linq;
 using snowcrashCLR;
+using Blueprint.Aspnet.Module.Constants;
 
 namespace Blueprint.Aspnet.Module
 {
@@ -129,6 +130,9 @@ namespace Blueprint.Aspnet.Module
 
         private bool MatchPayload(HttpRequest actualRequest, Payload payload)
         {
+            if (!MatchContentType(actualRequest.Headers, payload.Headers()))
+                return false;
+
             if (!MatchHeaders(actualRequest.Headers, payload.Headers()))
                 return false;
 
@@ -138,23 +142,58 @@ namespace Blueprint.Aspnet.Module
             return true;
         }
 
+        private bool MatchContentType(NameValueCollection actualRequestHeaders, NameValueCollection payloadHeaders)
+        {
+            if (!payloadHeaders.HasKey(Headers.ContentType)) 
+                return true;
+
+            var targetContentType = payloadHeaders.ValueOrDefault(Headers.ContentType);
+            var requestContentType = actualRequestHeaders.ValueOrDefault(Headers.ContentType);
+
+            if (string.IsNullOrEmpty(requestContentType))
+                return false;
+
+            if (requestContentType.Contains(';'))
+            {
+                requestContentType = requestContentType
+                    .Substring(0, requestContentType.IndexOf(';'))
+                    .Trim();
+            }
+
+            return string.Equals(requestContentType, targetContentType, StringComparison.OrdinalIgnoreCase);
+        }
+
         private bool MatchHeaders(NameValueCollection actualRequestHeaders, NameValueCollection payloadHeaders)
         {
-            return actualRequestHeaders.Contains(payloadHeaders);
+            if (payloadHeaders.Count == 0) 
+                return true;
+
+            var requestHeaders = actualRequestHeaders;
+            if (actualRequestHeaders.HasKey(Headers.ContentType))
+            {
+                requestHeaders = actualRequestHeaders.Except(Headers.ContentType);
+            }
+
+            var exampleHeaders = payloadHeaders;
+            if (exampleHeaders.HasKey(Headers.ContentType))
+            {
+                exampleHeaders = payloadHeaders.Except(Headers.ContentType);
+            }
+
+            return requestHeaders.Contains(exampleHeaders);
         }
 
         private bool MatchBody(HttpRequest request, Payload payload)
         {
-            // check if content type matches, only when blueprint has a content type header.
-            var payloadContentTypeHeader = payload
-                .Headers()
-                .Get("content-type");
+            var requestContentType = request.ContentType;
+            if (requestContentType.Contains(';'))
+            {
+                requestContentType = requestContentType
+                    .Substring(0, requestContentType.IndexOf(';'))
+                    .Trim();
+            }
 
-            if (!string.IsNullOrWhiteSpace(payloadContentTypeHeader))
-                if (!request.ContentType.EqualsIgnoreCase(payloadContentTypeHeader))
-                    return false;
-
-            if (request.ContentType.EqualsIgnoreCase("application/json"))
+            if (requestContentType.EqualsIgnoreCase("application/json"))
                 return MatchJson(request.GetBodyString(), payload.body);
 
             // compare body as a string ignoring whitespace (space, tab, line ending, carriage return)
