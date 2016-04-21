@@ -2,8 +2,8 @@
 Host your API Blueprints in an ASP.net website.
 
 ## Published Artefacts
-+ CI Build [![Build status](https://img.shields.io/appveyor/ci/BishoyDemian/api-blueprint-aspnet-host.svg?style=flat-square)](https://ci.appveyor.com/project/BishoyDemian/api-blueprint-aspnet-host)
-+ Nuget [![Nuget counter](http://img.shields.io/nuget/dt/BlueprintHost.NET.svg?style=flat-square)](https://www.nuget.org/packages/BlueprintHost.net)
++ CI Build [![Build status](https://ci.appveyor.com/api/projects/status/t28deeh2xisxqyju?svg=true)](https://ci.appveyor.com/project/BishoyDemian/api-blueprint-aspnet-host)
++ Nuget [![Nuget](https://img.shields.io/badge/nuget-download-blue.svg)](https://www.nuget.org/packages/BlueprintHost.net)
 
 ## Features
 + Scans a terget folder (and all sub-folders) for blueprint markdown files (*.md)
